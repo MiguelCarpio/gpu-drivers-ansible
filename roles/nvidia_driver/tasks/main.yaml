@@ -30,6 +30,15 @@
   ansible.builtin.import_tasks: drivers.yaml
   when: (not (nvidia_driver_already_installed | bool)) or (nvidia_driver_force_install | bool)
 
+- name: Reboot to load NVIDIA driver
+  ansible.builtin.reboot:
+    msg: "Rebooting to load NVIDIA kernel modules"
+    reboot_timeout: 600
+    post_reboot_delay: 30
+  when:
+    - not nvidia_driver_skip_reboot | default(false)
+    - (not (nvidia_driver_already_installed | bool)) or (nvidia_driver_force_install | bool)
+
 - name: Install Container Tools
   ansible.builtin.include_tasks: container_tools.yaml
   when: nvidia_driver_install_container_tools | bool
