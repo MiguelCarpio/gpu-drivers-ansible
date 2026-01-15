@@ -29,5 +29,8 @@ nvidia_driver_management_library_package_name: "libnvidia-ml"
 # Whether to blacklist nouveau driver
 nvidia_driver_blacklist_nouveau: true
 
+# Whether to skip reboot after driver installation
+nvidia_driver_skip_reboot: false
+
 # Whether to force install NVIDIA driver (NOTE: THIS IS FOR DEBUGGING ONLY AND IS NOT EXPECTED TO WORK [yet?])
 nvidia_driver_force_install: false
